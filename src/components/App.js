@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
@@ -8,8 +9,12 @@ import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
 import AddPlacePopup from './AddPlacePopup.js';
+import Login from './Login.js';
+import Register from './Register.js';
+
 
 function App() {
+  const [loggedIn, setLoggedIn] = React.useState(false);
   const [isEditProfilePopupOpen, setProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setPlacePopupOpen] = React.useState(false);
   const [isEditAvatarPopupOpen, setAvatarPopupOpen] = React.useState(false);
@@ -106,6 +111,11 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header />
+          <Routes>
+            <Route path="/" element={loggedIn ? <Navigate to="/sign-in" /> : <Navigate to="/sign-up" />} /> 
+            <Route path="/sign-up" element={<Register />} />
+            <Route path="/sign-in" element={<Login />} />
+          </Routes>
         <Main 
           onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick}
