@@ -29,7 +29,6 @@ function App() {
   const [isInfoTTSuccess, setInfoTTSuccess] = React.useState(false);
   const [headerEmail, setHeaderEmail] = React.useState('');
 
-
   React.useEffect(() => {
     Promise.all([apiData.getUserInfo(), apiData.getInitialCards()])
       .then(([user, data]) => {
@@ -116,21 +115,25 @@ function App() {
       .catch(err => {console.error(err)})
   }
 
-  React.useEffect(() => {
+  function handleTokenCheck() {
     const jwt = localStorage.getItem('jwt');
     if (jwt) {
       apiAuth
         .checkToken(jwt)
         .then((data) => {
           if (data) {
-            setLoggedIn(true);
-           setHeaderEmail(data.data.email);
+           setLoggedIn(true);
+           setHeaderEmail(data.email);
            navigate('/');
           }
         })
         .catch((err) => console.log(err));
     }
-  }, [navigate]); 
+  }
+
+  React.useEffect(() => {
+    handleTokenCheck();
+  }, [])
 
   function handleRegisterNewUser(email, password) {
     apiAuth

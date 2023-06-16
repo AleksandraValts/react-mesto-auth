@@ -18,7 +18,7 @@ function Login(props) {
     props.onLogin(email, password);
   }
 
-  if (props.isLogin) {
+  if (props.loggedIn) {
     return <Navigate to="/" />;
   }
 

@@ -18,7 +18,7 @@ function Register(props) {
     props.onRegister(email, password);
   }
 
-  if (props.isLogin) {
+  if (props.loggedIn) {
     return <Navigate to="/" />;
   }
 
