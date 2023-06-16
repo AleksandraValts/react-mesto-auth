@@ -72,7 +72,7 @@
   font-size: 18px;
   line-height: 1.2;
   text-decoration: none;
-  color: #fff;
+  color: #FFFFFF;
   transition: .2s ease;
   opacity: 1;
   padding-top: 51px;
@@ -80,4 +80,58 @@
 
 .header__login:hover {
   opacity: 0.6;
+}
+
+.header__exit {
+  color: #A9A9A9;
+}
+
+.header__login-page {
+  margin: 0;
+  padding: 0;
+  padding-top: 51px;
+  display: flex;
+  list-style-type: none;
+}
+
+.header__text {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 1.2;
+  color: #FFFFFF;
+  margin-right: 24px;
+}
+
+.popup__container_login {
+  width: 430px;
+  min-height: 330px;
+}
+
+.popup__login-img {
+  max-width: 120px;
+  width: 100%;
+  min-height: 120px;
+  margin: 60px auto auto auto;
+}
+
+.popup__login-img_type_ok {
+  background-image: url(../../images/icon-ok.png);
+}
+
+.popup__login-img_type_not-ok {
+  background-image: url(../../images/icon-not-ok.png);
+}
+
+.popup__title-login {
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #000000;
+  max-width: 358px;
+  margin: 32px auto 60px auto;
 }
