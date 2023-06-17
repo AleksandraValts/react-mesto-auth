@@ -26,33 +26,33 @@
 }
 
 .login__link {
-  display: flex;
-  justify-content: center;
+  text-decoration: none;
   font-weight: 400;
   font-style: normal;
   font-size: 17px;
   line-height: 1.2;
   color: #FFFFFF;
-  text-decoration: none;
+  display: flex;
+  justify-content: center;
 }
 
 .login__title {
+  margin-bottom: 50px;
   font-weight: 900;
   font-style: normal;
   font-size: 24px;
   line-height: 1.2;
   color: #FFFFFF;
-  margin-bottom: 50px;
 }
 
 .login__input {
-  border: 0;
   width: 100%;
-  border-bottom: 2px solid #CCCCCC;
+  color: #FFFFFF;
+  padding-bottom: 13px;
   margin-bottom: 30px;
   background-color: transparent;
-  padding-bottom: 13px;
-  color: #FFFFFF;
+  border: 0;
+  border-bottom: 2px solid #CCCCCC;
 }
 
 .login__input:focus {
@@ -60,78 +60,8 @@
 }
 
 .login__form {
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 15px;
-}
-
-.header__login {
-  font-weight: 400;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 1.2;
-  text-decoration: none;
-  color: #FFFFFF;
-  transition: .2s ease;
-  opacity: 1;
-  padding-top: 51px;
-}
-
-.header__login:hover {
-  opacity: 0.6;
-}
-
-.header__exit {
-  color: #A9A9A9;
-}
-
-.header__login-page {
-  margin: 0;
-  padding: 0;
-  padding-top: 51px;
-  display: flex;
-  list-style-type: none;
-}
-
-.header__text {
-  margin: 0;
-  padding: 0;
-  font-weight: 500;
-  font-style: normal;
-  font-size: 18px;
-  line-height: 1.2;
-  color: #FFFFFF;
-  margin-right: 24px;
-}
-
-.popup__container_login {
-  width: 430px;
-  min-height: 330px;
-}
-
-.popup__login-img {
-  max-width: 120px;
-  width: 100%;
-  min-height: 120px;
-  margin: 60px auto auto auto;
-}
-
-.popup__login-img_type_ok {
-  background-image: url(../../images/icon-ok.png);
-}
-
-.popup__login-img_type_not-ok {
-  background-image: url(../../images/icon-not-ok.png);
-}
-
-.popup__title-login {
-  font-style: normal;
-  font-weight: 900;
-  font-size: 24px;
-  line-height: 29px;
-  text-align: center;
-  color: #000000;
-  max-width: 358px;
-  margin: 32px auto 60px auto;
 }

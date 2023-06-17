@@ -5,7 +5,7 @@ import Main from './Main.js';
 import Footer from './Footer.js';
 import ImagePopup from './ImagePopup.js';
 import apiData from '../utils/Api.js';
-import apiAuth from '../utils/ApiAuth.js';
+import * as apiAuth from '../utils/ApiAuth.js';
 import {CurrentUserContext} from '../contexts/CurrentUserContext.js';
 import EditProfilePopup from './EditProfilePopup.js';
 import EditAvatarPopup from './EditAvatarPopup.js';
@@ -120,12 +120,10 @@ function App() {
     if (jwt) {
       apiAuth
         .checkToken(jwt)
-        .then((data) => {
-          if (data) {
+        .then((res) => {
            setLoggedIn(true);
-           setHeaderEmail(data.email);
-           navigate('/');
-          }
+           setHeaderEmail(res.data.email);
+           navigate('/');  
         })
         .catch((err) => console.log(err));
     }
@@ -135,11 +133,11 @@ function App() {
     handleTokenCheck();
   }, [])
 
-  function handleRegisterNewUser(email, password) {
-    apiAuth
-      .registerNewUser(email, password)
-      .then((data) => {
-        if (data) {
+  function handleRegisterNewUser({email, password}) {
+   return apiAuth
+      .register(email, password)
+      .then((res) => {
+        if (res.data._id) {
           setInfoTTSuccess(true);
           navigate('/sign-in');
         }
@@ -151,10 +149,11 @@ function App() {
       .finally(() => setOkPopupOpen(true));
   }
 
-  function handleLoginUser(email, password) {
-    apiAuth
-      .loginUser(email, password)
+  function handleLoginUser({email, password}) {
+    return apiAuth
+      .authorise(email, password)
       .then((data) => {
+        if(!data) { return }
         if (data.token) {
           setHeaderEmail(email);
           setLoggedIn(true);
@@ -198,7 +197,7 @@ function App() {
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
         <ImagePopup isOpen={selectedCard} card={selectedCard} onClose={closeAllPopups} />
-        <InfoTooltip authStatus={isInfoTTSuccess} onClose={closeAllPopups} isOpen={isOkPopupOpen} isSuccess={isInfoTTSuccess}/>
+        <InfoTooltip onClose={closeAllPopups} isOpen={isOkPopupOpen} isSuccess={isInfoTTSuccess}/>
       </div>
     </CurrentUserContext.Provider>
     );
