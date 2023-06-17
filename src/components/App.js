@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import Header from './Header.js';
 import Main from './Main.js';
@@ -14,7 +14,6 @@ import Login from './Login.js';
 import Register from './Register.js';
 import ProtectedRoute from './ProtectedRoute.js';
 import InfoTooltip from './InfoTooltip.js';
-
 
 function App() {
   const [isEditProfilePopupOpen, setProfilePopupOpen] = React.useState(false);
@@ -180,27 +179,43 @@ function App() {
       <div className="page">
         <Header onExit={handleExit} headerEmail={headerEmail}/>
           <Routes> 
-            <Route path="/" element={<ProtectedRoute element={Main} loggedIn={loggedIn}
-          onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick}
-          onCardLike={handleCardLike} onCardDelete={handleCardDelete} cards={cards} />} /> 
-            <Route path="/" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-up" />} /> 
-            <Route path="/sign-up" element={<Register onRegister={handleRegisterNewUser} />} />
-            <Route path="/sign-in" element={<Login onLogin={handleLoginUser} />} />
+            <Route 
+              path="/" 
+              element={<ProtectedRoute element={Main} loggedIn={loggedIn}
+              onEditAvatar={handleEditAvatarClick} onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick} onCardClick={handleCardClick}
+              onCardLike={handleCardLike} onCardDelete={handleCardDelete} cards={cards} />} /> 
+            <Route 
+              path="/" element={loggedIn ? <Navigate to="/" /> : <Navigate to="/sign-up" />} /> 
+            <Route 
+              path="/sign-up" element={<Register onRegister={handleRegisterNewUser} />} />
+            <Route 
+              path="/sign-in" element={<Login onLogin={handleLoginUser} />} />
           </Routes>
-       
-        <Footer />
         <EditProfilePopup 
-          isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />       
+          isOpen={isEditProfilePopupOpen}
+          onClose={closeAllPopups}
+          onUpdateUser={handleUpdateUser} />       
         <EditAvatarPopup 
-          isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
+          isOpen={isEditAvatarPopupOpen}
+          onClose={closeAllPopups}
+          onUpdateAvatar={handleUpdateAvatar} />
         <AddPlacePopup
-          isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
-        <ImagePopup isOpen={selectedCard} card={selectedCard} onClose={closeAllPopups} />
-        <InfoTooltip onClose={closeAllPopups} isOpen={isOkPopupOpen} isSuccess={isInfoTTSuccess}/>
+          isOpen={isAddPlacePopupOpen}
+          onClose={closeAllPopups}
+          onAddPlace={handleAddPlaceSubmit} />
+        <ImagePopup
+          isOpen={selectedCard}
+          card={selectedCard}
+          onClose={closeAllPopups} />
+        <InfoTooltip
+          onClose={closeAllPopups} 
+          isOpen={isOkPopupOpen} 
+          isSuccess={isInfoTTSuccess}/>
+        <Footer />
       </div>
     </CurrentUserContext.Provider>
-    );
-  }
+  )
+}
 
 export default App;
